@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+
+  realms-db:
+    image: postgres:15.2
+    container_name: "db-dev"
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgresql
+      POSTGRES_USER: postgresql
+      POSTGRES_DB: users
+
+    networks:
+      db-dev-net:
+        ipv4_address: 172.16.234.2
+
+networks:
+  db-dev-net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.234.0/24
+
